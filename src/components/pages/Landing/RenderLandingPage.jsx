@@ -55,7 +55,7 @@ function RenderLandingPage(props) {
             alt="Grant Rates Over Time Graph"
             class="gr-overtime-img"
           ></img>
-          <p>Search Grant Rates Over Time</p>
+          <p>Search Grant Rates Over</p>
         </div>
       </div>
       {/* <div className="graphs-section"> */}

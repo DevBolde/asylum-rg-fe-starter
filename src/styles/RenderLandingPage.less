@@ -40,11 +40,37 @@
     color: @white;
     font-size: 1.2rem;
 }
+//**************
+.graphs-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.grant-rates-by-office-graph-container,
+.grant-rates-by-nationality-graph-container,
+.grant-rates-over-time-graph-container {
+  text-align: center;
+  width: 30%; /* Adjust the width as needed */
+}
 
-// .graphs-section {
-//  ADD THIS BACK IN WHEN YOU HAVE THE GRAPHS SECTION
-// }
+.gr-office-img,
+.gr-overtime-img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+.gr-nationality-img{
+    
+}
 
+.grant-rates-by-office-graph-container p,
+.grant-rates-by-nationality-graph-container p,
+.grant-rates-over-time-graph-container p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+//**************
 .view-more-data-btn-container {
     height: 44px;
     width: 180px;
