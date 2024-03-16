@@ -40,37 +40,63 @@
     color: @white;
     font-size: 1.2rem;
 }
-//**************
+//******Head Graphs********
 .graphs-section {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-.grant-rates-by-office-graph-container,
-.grant-rates-by-nationality-graph-container,
-.grant-rates-over-time-graph-container {
-  text-align: center;
-  width: 30%; /* Adjust the width as needed */
-}
-
-.gr-office-img,
-.gr-overtime-img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-.gr-nationality-img{
+    justify-content: space-evenly;
     
 }
-
-.grant-rates-by-office-graph-container p,
-.grant-rates-by-nationality-graph-container p,
-.grant-rates-over-time-graph-container p {
-  font-size: 14px;
-  color: #333;
-  margin: 0;
+.grant-rates-by-office-graph-container{
+    text-align: center;
+    height: 165px;
+    font-size: 1.5rem;
+    font-family: "acumin";
 }
-//**************
+.grant-rates-by-nationality-graph-container{
+    text-align: center;
+    margin-bottom: 3%;
+    margin-left: -15px;
+    font-size: 1.5rem;
+    font-family: "acumin";
+}
+.grant-rates-over-time-graph-container {
+        text-align: center;
+        height: 165px;
+        font-size: 1.5rem;
+        font-family: "acumin";
+}
+
+.gr-office-img{
+    height: 165px;
+    width: 320px;
+    margin-bottom: 10%;
+}
+.gr-nationality-img{
+    height: 175px;
+    width: 200px;
+    margin-bottom: 7%;
+    margin-left: -15px;
+}
+.gr-overtime-img {
+    height: 165px;
+    width: 300px;
+    margin-bottom: 10%;
+}
+
+
+// .grant-rates-by-office-graph-container p,
+// .grant-rates-by-nationality-graph-container p,
+p {
+    margin-top: 0;
+    margin-bottom: 1em;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+//******Head Graph End********
 .view-more-data-btn-container {
     height: 44px;
     width: 180px;

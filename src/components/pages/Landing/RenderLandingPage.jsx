@@ -41,7 +41,7 @@ function RenderLandingPage(props) {
           ></img>
           <p>Search Grant Rates By Office</p>
         </div>
-        <div class="grant-rates-by-nationality-graph-container">
+        <div class="grant-rates-by-nationality-container">
           <img
             src={GrantRatesByNationalityImg}
             alt="Grant Rates By Nationality"
@@ -49,7 +49,7 @@ function RenderLandingPage(props) {
           ></img>
           <p>Search Grant Rates By Nationality</p>
         </div>
-        <div class="grant-rates-over-time-graph-container">
+        <div class="grant-rates-over-time-container">
           <img
             src={GrantRatesOverTimeImg}
             alt="Grant Rates Over Time Graph"
