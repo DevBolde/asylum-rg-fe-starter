@@ -94,7 +94,7 @@ function RenderLandingPage(props) {
           </h3>
         </div>
       </div>
-      <div>
+      <div class="bottom-section">
         {/*START BOTTOM GRAPH SECTION */}
         <div className="bottom-section">
           <h1>Systemic Disparity Insights</h1>
@@ -125,7 +125,15 @@ function RenderLandingPage(props) {
           </div>
         </div>
         {/*END BOTTOM GRAPH SECTION */}
-
+        <div class="read-more-btn">
+          <Button
+            type="default"
+            style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+            onClick={() => history.push('/graphs')}
+          >
+            Read More
+          </Button>
+        </div>
         <p onClick={() => scrollToTop()} className="back-to-top">
           Back To Top ^
         </p>
