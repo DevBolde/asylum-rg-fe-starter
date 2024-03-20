@@ -8,7 +8,7 @@ import '../../../styles/RenderLandingPage.less';
 import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 // for the purposes of testing PageNav
-import PageNav from '../../common/PageNav';
+// import PageNav from '../../common/PageNav';
 
 function RenderLandingPage(props) {
   const scrollToTop = () => {
@@ -68,8 +68,7 @@ function RenderLandingPage(props) {
         >
           View the Data
         </Button>
-      </div>
-      <div className="download-the-data-btn-container">
+
         <Button
           type="default"
           style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
