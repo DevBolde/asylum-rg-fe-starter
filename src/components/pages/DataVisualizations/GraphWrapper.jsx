@@ -15,6 +15,7 @@ import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
 const { background_color } = colors;
+const apiURL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
 
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
@@ -73,54 +74,53 @@ function GraphWrapper(props) {
                                    -- Mack 
     
     */
+
   async function updateStateWithNewData(
     years,
     view,
     office,
     stateSettingCallback
   ) {
-    const apiURL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
-
     if (office === 'all' || !office) {
-      await axios
-        .get(`${apiURL}/fiscalSummary`, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      const [fisData, citData] = await Promise.all([
-        axios.get(`${apiURL}/fiscalSummary`),
-        axios.get(`${apiURL}/citizenshipSummary`),
-      ]);
-      const concatData = { ...fisData, citizenshipResults: citData.data };
+      const fiscal = await axios.get(`${apiURL}/fiscalSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+        },
+      });
+      const cit = await axios.get(`${apiURL}/citizenshipSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+        },
+      });
+
+      const concatData = { ...fiscal.data, citizenshipResults: cit.data };
       const myData = [];
       myData.push(concatData);
-      console.log(myData);
+
       stateSettingCallback(view, office, myData);
-      // await axios.get(myData, {
-      //     // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-      //     params: {
-      //       from: years[0],
-      //       to: years[1],
-      //       office: office,
-      //     },
-      //   })
-      //   .then(result => {
-      //     console.log(result.data);
-      //     stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-      //   })
-      //   .catch(err => {
-      //     console.error(err);
-      //   });
+    } else {
+      const fiscal = await axios.get(`${apiURL}/fiscalSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+          office: office,
+        },
+      });
+      const cit = await axios.get(`${apiURL}/citizenshipSummary`, {
+        params: {
+          from: years[0],
+          to: years[1],
+          office: office,
+        },
+      });
+
+      const concatData = { ...fiscal.data, citizenshipResults: cit.data };
+      const myData = [];
+      myData.push(concatData);
+
+      stateSettingCallback(view, office, myData);
     }
   }
   const clearQuery = (view, office) => {
