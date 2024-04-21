@@ -19,6 +19,7 @@ const { background_color } = colors;
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
   let { office, view } = useParams();
+
   if (!view) {
     set_view('time-series');
     view = 'time-series';
@@ -50,9 +51,8 @@ function GraphWrapper(props) {
         break;
     }
   }
-  function updateStateWithNewData(years, view, office, stateSettingCallback) {
-    // const apiURL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
-    /*
+
+  /*
           _                                                                             _
         |                                                                                 |
         |   Example request for once the `/summary` endpoint is up and running:           |
@@ -73,10 +73,17 @@ function GraphWrapper(props) {
                                    -- Mack 
     
     */
+  async function updateStateWithNewData(
+    years,
+    view,
+    office,
+    stateSettingCallback
+  ) {
+    const apiURL = 'https://hrf-asylum-be-b.herokuapp.com/cases';
 
     if (office === 'all' || !office) {
-      axios
-        .get(`${'https://hrf-asylum-be-b.herokuapp.com/cases'}/summary`, {
+      await axios
+        .get(`${apiURL}/fiscalSummary`, {
           // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
           params: {
             from: years[0],
@@ -90,21 +97,30 @@ function GraphWrapper(props) {
           console.error(err);
         });
     } else {
-      axios
-        .get(`${'https://hrf-asylum-be-b.herokuapp.com/cases'}/summary`, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      const [fisData, citData] = await Promise.all([
+        axios.get(`${apiURL}/fiscalSummary`),
+        axios.get(`${apiURL}/citizenshipSummary`),
+      ]);
+      const concatData = { ...fisData, citizenshipResults: citData.data };
+      const myData = [];
+      myData.push(concatData);
+      console.log(myData);
+      stateSettingCallback(view, office, myData);
+      // await axios.get(myData, {
+      //     // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
+      //     params: {
+      //       from: years[0],
+      //       to: years[1],
+      //       office: office,
+      //     },
+      //   })
+      //   .then(result => {
+      //     console.log(result.data);
+      //     stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+      //   })
+      //   .catch(err => {
+      //     console.error(err);
+      //   });
     }
   }
   const clearQuery = (view, office) => {
