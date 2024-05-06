@@ -69,13 +69,20 @@ function RenderLandingPage(props) {
           View the Data
         </Button>
 
-        <Button
-          type="default"
-          style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
-          onClick={() => history.push('/graphs')}
+        <a
+          href="https://humanrightsfirst.org/wp-content/uploads/2022/10/COW2021001887-I589Data.csv"
+          // target="_blank"
+          // rel="noreferrer"
         >
-          Download the Data
-        </Button>
+          <div className="read-more-btn">
+            <Button
+              type="default"
+              style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+            >
+              Download the Data
+            </Button>
+          </div>
+        </a>
       </div>
 
       <div className="middle-section">
@@ -98,8 +105,8 @@ function RenderLandingPage(props) {
       {/*START BOTTOM GRAPH SECTION */}
       <div className="bottom-section">
         <h1>Systemic Disparity Insights</h1>
-        <div class="data-container">
-          <div class="first-data-point-container">
+        <div className="data-container">
+          <div className="first-data-point-container">
             <h2>36%</h2>
             <h3>
               By the end of the Trump administration, the average asylum office
@@ -107,14 +114,14 @@ function RenderLandingPage(props) {
               fiscal year 2016 to 28 percent in fiscal year 2020.
             </h3>
           </div>
-          <div class="second-data-point-container">
+          <div className="second-data-point-container">
             <h2>5%</h2>
             <h3>
               The New York asylum office grant rate dropped to 5 percent in
               fiscal year 2020.
             </h3>
           </div>
-          <div class="third-data-point-container">
+          <div className="third-data-point-container">
             <h2>6x Lower</h2>
             <h3>
               Between fiscal year 2017 and 2020, the New York asylum office’s
@@ -125,15 +132,20 @@ function RenderLandingPage(props) {
         </div>
 
         {/*END BOTTOM GRAPH SECTION */}
-        <div class="read-more-btn">
-          <Button
-            type="default"
-            style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
-            onClick={() => history.push('/graphs')}
-          >
-            Read More
-          </Button>
-        </div>
+        <a
+          href="https://humanrightsfirst.org/library/uscis-records-reveal-systemic-disparities-in-asylum-decisions/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className="read-more-btn">
+            <Button
+              type="default"
+              style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+            >
+              Read More
+            </Button>
+          </div>
+        </a>
         <p onClick={() => scrollToTop()} className="back-to-top">
           Back To Top ^
         </p>

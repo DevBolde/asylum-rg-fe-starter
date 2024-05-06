@@ -6,14 +6,17 @@ import {
   // useHistory,
   Switch,
 } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import 'antd/dist/antd.less';
+import Loading from './components/loading';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LandingPage } from './components/pages/Landing';
-
 import { FooterContent, SubFooter } from './components/Layout/Footer';
 import { HeaderContent } from './components/Layout/Header';
-
+import Profile from './components/pages/Profile';
+import ProtectedRoute from './auth/Protected-route';
 // import { TablePage } from './components/pages/Table';
 
 import { Layout } from 'antd';
@@ -30,7 +33,9 @@ ReactDOM.render(
   <Router>
     <Provider store={store}>
       <React.StrictMode>
-        <App />
+        <Auth0ProviderWithHistory>
+          <App />
+        </Auth0ProviderWithHistory>
       </React.StrictMode>
     </Provider>
   </Router>,
@@ -39,6 +44,12 @@ ReactDOM.render(
 
 export function App() {
   const { Footer, Header } = Layout;
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Layout>
       <Header
@@ -54,6 +65,7 @@ export function App() {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/graphs" component={GraphsContainer} />
+        <ProtectedRoute path="/profile" component={Profile} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer
